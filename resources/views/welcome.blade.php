@@ -16,5 +16,5 @@
 @else
     <p>Welcome, User!</p>
 @endif
-</body>
+</body>''
 </html>
