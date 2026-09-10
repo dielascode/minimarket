@@ -15,9 +15,9 @@ class AuthController extends Controller
             'email' => 'required|email',
             'password' => 'required',
         ]);
-        $user = DB::table('users')
-            ->where('email', $request->email)
-            ->first();
+        $user = User::where('email', $request->email) //gaboleh ngambil db buat datanya
+                ->where('password', $request->password)
+                ->first();
 
         if (!$user) {
             return back()->with('error', 'Email tidak ditemukan.');
