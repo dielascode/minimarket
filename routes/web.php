@@ -18,13 +18,13 @@ Route::post('/loginproses', [AuthController::class, 'login']);
 // });
 Route::prefix('admin')->group(function () {
     Route::get('/dashboard', function () {
-        return view('halamanAdmin');
+        return view('auth.halamanAdmin');
     })->name('admin.dashboard');
 });
 
 Route::prefix('umum')->group(function () {
     Route::get('/dashboard', function () {
-        return view('halamanUmum');
+        return view('auth.halamanUmum');
     })->name('umum.dashboard');
 });
 
