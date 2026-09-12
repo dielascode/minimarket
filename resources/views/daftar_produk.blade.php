@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,74 +23,34 @@
             background-color: #f7f9fc;
             color: #1f2937;
         }
-
-        .navbar-custom {
-            background: #ffffff;
-            padding: 18px 0;
-            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
-        }
-
-        .navbar-brand {
-            font-size: 25px;
-            font-weight: 800;
-            color: #2563eb !important;
-        }
-
-        .navbar-brand span {
-            color: #111827;
-        }
-
-        .hero {
-            margin-top: 35px;
-            background: linear-gradient(135deg, #2563eb, #1e40af);
-            border-radius: 25px;
-            padding: 55px;
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::after {
-            content: "";
-            position: absolute;
-            width: 280px;
-            height: 280px;
-            background: rgba(255, 255, 255, 0.08);
-            border-radius: 50%;
-            right: -70px;
-            top: -80px;
-        }
-
-        .hero h1 {
-            font-size: 38px;
-            font-weight: 700;
-            margin-bottom: 15px;
-        }
-
-        .hero p {
-            max-width: 600px;
-            color: #dbeafe;
-            line-height: 1.8;
-        }
-
-        .hero-button {
-            margin-top: 20px;
-            display: inline-block;
-            background: white;
-            color: #2563eb;
-            padding: 12px 24px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .hero-button:hover {
-            background: #eff6ff;
-            color: #1d4ed8;
-        }
     </style>
 </head>
-<body>
 
+<body>
+    <div class="container">
+        <h1>Halaman Daftar Produk</h1>
+        <table class="table table-primary">
+            <tr>
+                <th>No</th>
+                <th>Nama Produk</th>
+                <th>SKU</th>
+                <th>Harga</th>
+                <th>Stok</th>
+                <th>Gambar Produk</th>
+            </tr>
+            @foreach ($produk as $item)
+                <tr>
+                    <td class="table-light">{{$loop->iteration}}</td>
+                    <td class="table-light">{{$item['nama']}}</td>
+                    <td class="table-light">{{$item['sku']}}</td>
+                    <td class="table-light">{{$item['harga']}}</td>
+                    <td class="table-light">{{$item['stok']}}</td>
+                    <td class="table-light"><img src="{{ asset('images/'. $item['gambar']) }}" alt="" srcset="" width="300px"></td>
+                </tr>
+            @endforeach
+
+        </table>
+    </div>
 </body>
+
 </html>

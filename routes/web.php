@@ -22,7 +22,44 @@ Route::get('/produk/cari/{nama?}', function ($nama = null) {
 //     return view('auth/login');
 // });
 Route::get('/', function () {
-    return view('dashboard',['name' => 'PRABOWO', 'shift' => '24 Jam']);
+    return view('dashboard', ['name' => 'PRABOWO', 'shift' => '24 Jam']);
+});
+Route::get('/produk-toko', function () {
+    $produk= [
+        [
+            'no' => 1,
+            'nama' => 'sawit',
+            'sku' => 'BR3777673',
+            'harga' => 1200000,
+            'stok' => 1000,
+            'gambar' => 'sawit.jpg'
+        ],
+        [
+            'no' => 2,
+            'nama' => 'buku islam ala prabowo',
+            'sku' => 'BR3777674', 'harga' => 30000,
+            'stok' => 7000,
+            'gambar' => 'islam.jpg'
+        ],
+        [
+            'no' => 3,
+            'nama' => 'MBG',
+            'sku' => 'BR3777675',
+            'harga' => 1200000,
+            'stok' => 1000000,
+            'gambar' => 'mbg.jpg'
+        ],
+        [
+            'no' => 4,
+            'nama' => '74 KG Emas',
+            'sku' => 'BR3777676',
+            'harga' => 1200000000,
+            'stok' => 1,
+            'gambar' => 'emas.jpg'
+        ]
+    ];
+
+    return view('daftar_produk', ['produk'=>$produk]);
 });
 
 Route::post('/loginproses', [AuthController::class, 'login']);
