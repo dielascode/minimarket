@@ -73,61 +73,28 @@ Route::prefix('admin')->group(function () {
         return view('dashboard', ['user' => $user]);
     })->name('admin.dashboard');
 
-    Route::get('/produk', function () {
-        return "Halaman kelola produk (HANYA ADMIN)";
-    })->name('admin.produk');
+    // Route::get('/produk', function () {
+    //     return "Halaman kelola produk (HANYA ADMIN)";
+    // })->name('admin.produk');
 
-    Route::get('/kategori', function () {
-        return 'Halaman Kelola Kategori Produk (Hanya Admin)';
-    })->name('admin.kategori');
+    // Route::get('/kategori', function () {
+    //     return 'Halaman Kelola Kategori Produk (Hanya Admin)';
+    // })->name('admin.kategori');
 
-    Route::get('/produk-toko', function () {
-        // $produk = [
-        //     [
-        //         'no' => 1,
-        //         'nama' => 'sawit',
-        //         'sku' => 'BR3777673',
-        //         'harga' => 1200000,
-        //         'stok' => 1000,
-        //         'gambar' => 'sawit.jpg'
-        //     ],
-        //     [
-        //         'no' => 2,
-        //         'nama' => 'buku islam ala prabowo',
-        //         'sku' => 'BR3777674',
-        //         'harga' => 30000,
-        //         'stok' => 7000,
-        //         'gambar' => 'islam.jpg'
-        //     ],
-        //     [
-        //         'no' => 3,
-        //         'nama' => 'MBG',
-        //         'sku' => 'BR3777675',
-        //         'harga' => 1200000,
-        //         'stok' => 1000000,
-        //         'gambar' => 'mbg.jpg'
-        //     ],
-        //     [
-        //         'no' => 4,
-        //         'nama' => '74 KG Emas',
-        //         'sku' => 'BR3777676',
-        //         'harga' => 1200000000,
-        //         'stok' => 1,
-        //         'gambar' => 'emas.jpg'
-        //     ]
-        // ];
+    // Route::resource('produk', ProductController::class)->except(['show']);
 
-        $produk = Product::all();
+    Route::get('/produk-toko', [ProductController::class, 'index'])->name('admin.produk-toko');
 
-        return view('produk.daftar_produk', ['produk' => $produk]);
-    })->name('admin.produk-toko');
+    Route::get('/tambah-produk', [ProductController::class, 'create'])->name('admin.tambahproduk');
 
-    Route::get('/tambah-produk', function(){
-        return view('produk.tambah_produk');
-    });
+    Route::post('/tambahprodukproses', [ProductController::class, 'store'])->name('admin.tambahprodukproses');
 
-    Route::post('/tambahprodukproses', [ProductController::class, 'store'])
-    ->name('admin.tambahprodukproses'); //perwakilan namanya
+    Route::get('/edit-produk/{id}', [ProductController::class, 'edit'])->name('admin.editproduk');
+
+    Route::put('/editprodukproses/{id}', [ProductController::class, 'update'])->name('admin.editprodukproses');
+
+    Route::delete('/hapus-produk/{id}', [ProductController::class, 'destroy'])->name('admin.hapusprosesproduk');
+
 });
 
 Route::prefix('kasir')->group(function () {

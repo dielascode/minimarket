@@ -55,8 +55,13 @@
                     <td class="table-light"><img src="{{ asset('images/' . $item['gambar']) }}" alt=""
                             srcset="" width="300px"></td>
                     <td class="table-light">
-                        <button class="btn btn-warning">Edit</button>
-                        <button class="btn btn-danger">Hapus</button>
+                        <a href="{{ route('admin.editproduk', $item->id) }}"><button class="btn btn-warning">Edit</button></a>
+                        {{-- ngambil id untuk controller bisa mastiin mana yang perlu diget --}}
+                        <form action="{{ route('admin.hapusprosesproduk', $item->id )}}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger">Hapus</button>
+                        </form>
                     </td>
                 </tr>
             @endforeach
