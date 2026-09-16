@@ -11,16 +11,16 @@ use Illuminate\Support\Facades\Auth;
 // Route::get('/', function () {
 //     return '<h1>Selamat Datang di Dashboard Minimarket</h1>';
 // });
-Route::get('/produk/{id}', function ($id) {
-    return 'Menampilkan data produk dengan ID: ' . $id;
-});
-Route::get('/produk/cari/{nama?}', function ($nama = null) {
-    if ($nama) {
-        return 'Hasil pencarian produk: ' . $nama;
-    }
-    return 'Silakan masukkan kata kunci pencarian pada URL
-    (contoh: /produk/cari/sabun)';
-});
+// Route::get('/produk/{id}', function ($id) {
+//     return 'Menampilkan data produk dengan ID: ' . $id;
+// });
+// Route::get('/produk/cari/{nama?}', function ($nama = null) {
+//     if ($nama) {
+//         return 'Hasil pencarian produk: ' . $nama;
+//     }
+//     return 'Silakan masukkan kata kunci pencarian pada URL
+//     (contoh: /produk/cari/sabun)';
+// });
 Route::get('/', function () {
     return view('auth/login');
 });
@@ -81,19 +81,19 @@ Route::prefix('admin')->group(function () {
     //     return 'Halaman Kelola Kategori Produk (Hanya Admin)';
     // })->name('admin.kategori');
 
-    // Route::resource('produk', ProductController::class)->except(['show']);
+    Route::resource('produk', ProductController::class)->except(['show']);
 
-    Route::get('/produk-toko', [ProductController::class, 'index'])->name('admin.produk-toko');
+    // Route::get('/produk-toko', [ProductController::class, 'index'])->name('admin.produk-toko');
 
-    Route::get('/tambah-produk', [ProductController::class, 'create'])->name('admin.tambahproduk');
+    // Route::get('/tambah-produk', [ProductController::class, 'create'])->name('admin.tambahproduk');
 
-    Route::post('/tambahprodukproses', [ProductController::class, 'store'])->name('admin.tambahprodukproses');
+    // Route::post('/tambahprodukproses', [ProductController::class, 'store'])->name('admin.tambahprodukproses');
 
-    Route::get('/edit-produk/{id}', [ProductController::class, 'edit'])->name('admin.editproduk');
+    // Route::get('/edit-produk/{id}', [ProductController::class, 'edit'])->name('admin.editproduk');
 
-    Route::put('/editprodukproses/{id}', [ProductController::class, 'update'])->name('admin.editprodukproses');
+    // Route::put('/editprodukproses/{id}', [ProductController::class, 'update'])->name('admin.editprodukproses');
 
-    Route::delete('/hapus-produk/{id}', [ProductController::class, 'destroy'])->name('admin.hapusprosesproduk');
+    // Route::delete('/hapus-produk/{id}', [ProductController::class, 'destroy'])->name('admin.hapusprosesproduk');
 
 });
 

@@ -55,7 +55,7 @@
                         @endforeach
                     </div>
                 @endif
-                <form action="{{ route('admin.tambahprodukproses') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('produk.store') }}" method="POST" enctype="multipart/form-data">
                     {{-- kalau kirim file harus pakai enctype="multipart/form-data --}}
                     {{-- ambil nama dari rute --}}
                     @csrf

@@ -49,7 +49,7 @@ class ProductController extends Controller
 
 
 
-        return redirect()->route('admin.produk-toko');
+        return redirect()->route('produk.index');
     }
 
     public function edit($id)
@@ -91,7 +91,7 @@ class ProductController extends Controller
 
         $product->update($data); //nah ngapdet
 
-        return redirect()->route('admin.produk-toko');
+        return redirect()->route('produk.index');
     }
 
     public function destroy($id){
@@ -99,6 +99,6 @@ class ProductController extends Controller
 
         $product->delete();
 
-        return redirect()->route('admin.produk-toko');
+        return redirect()->route('produk.index');
     }
 }

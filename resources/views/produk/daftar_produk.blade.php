@@ -33,7 +33,7 @@
             <button class="btn btn-primary" style=" margin: 20px 0;"><a style="color: white; text-decoration: none;"
                     href="dashboard">Kembali ke halaman utama</a></button>
             <button class="btn btn-success" style=" margin: 20px 0;"><a style="color: white; text-decoration: none;"
-                    href="tambah-produk">Tambah Produk</a></button>
+                    href="{{ route('produk.create') }}">Tambah Produk</a></button>
         </div>
         <table class="table table-primary">
             <tr>
@@ -55,9 +55,9 @@
                     <td class="table-light"><img src="{{ asset('images/' . $item['gambar']) }}" alt=""
                             srcset="" width="300px"></td>
                     <td class="table-light">
-                        <a href="{{ route('admin.editproduk', $item->id) }}"><button class="btn btn-warning">Edit</button></a>
+                        <a href="{{ route('produk.edit', $item->id) }}"><button class="btn btn-warning">Edit</button></a>
                         {{-- ngambil id untuk controller bisa mastiin mana yang perlu diget --}}
-                        <form action="{{ route('admin.hapusprosesproduk', $item->id )}}" method="post">
+                        <form action="{{ route('produk.destroy', $item->id )}}" method="post">
                             @csrf
                             @method('DELETE')
                             <button class="btn btn-danger">Hapus</button>

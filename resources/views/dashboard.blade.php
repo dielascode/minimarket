@@ -24,7 +24,7 @@
         <h3>Selamat Datang, {{ $user['name'] }}!</h3>
         <p>Status Shift Anda hari ini: <strong>24 Jam</strong></p>
         <h4>Menu Cepat:</h4>
-        <button class="btn btn-primary" style=" margin: 20px 0;"><a style="color: white; text-decoration: none;" href="produk-toko">Lihat Data Produk</a></button>
+        <button class="btn btn-primary" style=" margin: 20px 0;"><a style="color: white; text-decoration: none;" href="{{ route('produk.index') }}">Lihat Data Produk</a></button>
         <ul>
             <li>Kasir Aktif: Jam Operasional Terpantau</li>
             <li>Jumlah Transaksi Hari Ini: 122</li>
