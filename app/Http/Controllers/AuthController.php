@@ -27,8 +27,10 @@ class AuthController extends Controller
             return back()->with('error', 'Password salah.');
         }
         if ($user->role === 'admin') {
+            Auth::login($user);
             return redirect()->route('admin.dashboard');
         } else {
+            Auth::login($user);
             return redirect()->route('umum.dashboard');
         }
     }
