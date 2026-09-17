@@ -8,6 +8,6 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::apiResource('produk', ProductController::class);
+Route::apiResource('produkapi', ProductController::class);
 
 

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\LaporanPenjualan;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductController;
@@ -109,6 +110,12 @@ Route::prefix('umum')->group(function () {
     })->name('umum.dashboard');
 });
 
+Route::get('/laporan_penjualan', [LaporanPenjualan::class, '__invoke']);
+
+
+
+
+Route::get('/detail_penjualan/{id}', [LaporanPenjualan::class, 'show']);
 
 
 
