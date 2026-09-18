@@ -13,11 +13,11 @@ class ProductSeeder extends Seeder
      */
     public function run(): void
     {
-        Product::factory()->create([
-            'kode_barang'=>'B1234',
-            'nama_barang'=>'Indomie Goreng',
-            'qty'=>30,
-            'harga'=>2000
-        ]);
+        // Product::factory()->create([
+        //     'kode_barang'=>'B1234',
+        //     'nama_barang'=>'Indomie Goreng',
+        //     'qty'=>30,
+        //     'harga'=>2000
+        // ]);
     }
 }

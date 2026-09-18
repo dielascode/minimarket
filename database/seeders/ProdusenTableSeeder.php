@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -13,13 +12,34 @@ class ProdusenTableSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('produsen')->insert([
-            'nama_pabrik'=>"PT. Sawit Indonesia Emas 2045",
-            'nama_barang'=>"sawit",
-            'jenis_barang'=>"makanan",
-            'alamat'=>"kalimantan",
-            'no_telepon'=>'08123456789',
-            'email'=>'prabowo@gmail.com'
-        ]);
+        $suppliers = [
+            [
+                'nama_pabrik' => 'PT. Indofood',
+                'nama_barang' => 'Minyak Sawit',
+                'jenis_barang' => 'makanan',
+                'alamat' => 'Jawa',
+                'no_telepon' => '08123456789',
+                'email' => 'indofood@gmail.com',
+            ],
+            [
+                'nama_pabrik' => 'PT. Unilever',
+                'nama_barang' => 'Sabun',
+                'jenis_barang' => 'makanan',
+                'alamat' => 'Kalimantan',
+                'no_telepon' => '08123456789',
+                'email' => 'unilever@gmail.com',
+            ],
+            [
+                'nama_pabrik' => 'PT. Wings Food',
+                'nama_barang' => 'Mie Instan',
+                'jenis_barang' => 'makanan',
+                'alamat' => 'Sumatera',
+                'no_telepon' => '08123456789',
+                'email' => 'wings@gmail.com',
+            ],
+        ];
+
+        DB::table('supliers')->insert($suppliers);
     }
 }
+

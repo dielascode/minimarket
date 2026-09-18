@@ -17,13 +17,19 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        // User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'admin@gmail.com',
-        //     'password'=> '123456',
-        //     'role'=>'admin'
-        // ]);
+        User::factory()->create([
+            'name' => 'Test User',
+            'email' => 'admin@gmail.com',
+            'password'=> '123456',
+            'role'=>'admin'
+        ]);
 
-        User::factory()->count(10)->create();
+        $this->call(CategorySeeder::class);
+
+        $this->call(ProdusenTableSeeder::class);
+
+        \App\Models\Product::factory(50)->create();
+
+        // User::factory()->count(10)->create();
     }
 }
