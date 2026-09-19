@@ -72,6 +72,15 @@
                             value="{{ $product->nama_barang }}">
                     </div>
                     <div class="mb-3" class="form-label">
+                        <label for="">Kategori</label>
+                        <select name="id_kategori" id="id_kategori" class="form-control">
+                            <option value="">Pilih Kategori</option>
+                            @foreach ($kategori as $item)
+                                <option value="{{$item['id']}}">{{$item['name']}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="mb-3" class="form-label">
                         <label for="">Stok</label>
                         <input type="number" name="qty" id="qty" class="form-control"
                             value="{{ $product->qty }}">

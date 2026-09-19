@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kategori;
 use App\Models\Product;
 use Exception;
 use Illuminate\Http\Request;
@@ -17,37 +18,39 @@ class ProductController extends Controller
 
     public function create()
     {
-        return view('produk.tambah_produk');
+        $kategori = Kategori::all();
+        return view('produk.tambah_produk', compact('kategori'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
+            'id_kategori' => 'required',
             'kode_barang' => 'required',
             'nama_barang' => 'required',
-            'qty' => 'required',
-            'harga' => 'required',
-            'gambar' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'qty' => 'required|integer',
+            'harga' => 'required|numeric',
+            'gambar' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
         ]);
 
-        $gambar = $request->file('gambar');
-        $namaGambar = time() . '.' . $gambar->getClientOriginalExtension(); //biar seformat
+        $namaGambar = 'default.jpg';
 
-        $gambar->move(public_path('images'), $namaGambar); //naro di public/images
+        if ($request->hasFile('gambar')) {
+            $gambar = $request->file('gambar');
 
-        try {
-            Product::create([
-                'kode_barang' => $request->kode_barang,
-                'nama_barang' => $request->nama_barang,
-                'qty' => $request->qty,
-                'harga' => $request->harga,
-                'gambar' => $namaGambar, //cuma nama yang d taro sini
-            ]);
-        } catch (Exception $e) {
-            echo 'Caught exception: ', $e->getMessage(), "\n";
+            $namaGambar = time() . '.' . $gambar->getClientOriginalExtension();
+
+            $gambar->move(public_path('images'), $namaGambar);
         }
 
-
+        Product::create([
+            'id_kategori' => $request->id_kategori,
+            'kode_barang' => $request->kode_barang,
+            'nama_barang' => $request->nama_barang,
+            'qty' => $request->qty,
+            'harga' => $request->harga,
+            'gambar' => $namaGambar,
+        ]);
 
         return redirect()->route('produk.index');
     }
@@ -55,12 +58,14 @@ class ProductController extends Controller
     public function edit($id)
     { //ngambil parameter id dari web.php
         $product = Product::findOrFail($id); //trus dicari disini
-        return view('produk.edit_produk', compact('product')); //di comppact buat diteruskan ke vuiw
+        $kategori = Kategori::all();
+        return view('produk.edit_produk', compact('product', 'kategori')); //di comppact buat diteruskan ke vuiw
     }
 
     public function update(Request $request, $id)
     {
         $request->validate([
+            'id_kategori' => 'required',
             'kode_barang' => 'required',
             'nama_barang' => 'required',
             'qty' => 'required',
@@ -71,6 +76,7 @@ class ProductController extends Controller
         $product = Product::findOrFail($id); //diambil dulu pake id yang sesuai
 
         $data = [ //data baru jg disimpen dari inputan
+            'id_kategori' => $request->id_kategori,
             'kode_barang' => $request->kode_barang,
             'nama_barang' => $request->nama_barang,
             'qty' => $request->qty,
@@ -94,7 +100,8 @@ class ProductController extends Controller
         return redirect()->route('produk.index');
     }
 
-    public function destroy($id){
+    public function destroy($id)
+    {
         $product = Product::findOrFail($id);
 
         $product->delete();

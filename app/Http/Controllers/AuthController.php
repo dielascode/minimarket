@@ -15,9 +15,8 @@ class AuthController extends Controller
             'email' => 'required|email',
             'password' => 'required',
         ]);
-        $user = User::where('email', $request->email) //gaboleh ngambil db buat datanya
-                ->where('password', $request->password)
-                ->first();
+
+        $user = User::where('email', $request->email)->first();
 
         if (!$user) {
             return back()->with('error', 'Email tidak ditemukan.');
@@ -26,12 +25,13 @@ class AuthController extends Controller
         if ($request->password !== $user->password) {
             return back()->with('error', 'Password salah.');
         }
+
+        Auth::login($user);
+
         if ($user->role === 'admin') {
-            Auth::login($user);
             return redirect()->route('admin.dashboard');
-        } else {
-            Auth::login($user);
-            return redirect()->route('umum.dashboard');
         }
+
+        return redirect()->route('umum.dashboard');
     }
 }
