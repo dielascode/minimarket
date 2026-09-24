@@ -5,6 +5,7 @@ use App\Http\Controllers\LaporanPenjualan;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\QueryController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
@@ -22,9 +23,9 @@ use Illuminate\Support\Facades\Auth;
 //     return 'Silakan masukkan kata kunci pencarian pada URL
 //     (contoh: /produk/cari/sabun)';
 // });
-Route::get('/', function () {
-    return view('auth/login');
-});
+// Route::get('/', function () {
+//     return view('auth/login');
+// });
 // Route::get('/', function () {
 //     return view('dashboard', ['name' => 'PRABOWO', 'shift' => '24 Jam']);
 // });
@@ -119,11 +120,16 @@ Route::get('/detail_penjualan/{id}', [LaporanPenjualan::class, 'show']);
 
 
 
+Route::get('/getData', [QueryController::class, 'getData']);
+Route::get('/getDataWhere', [QueryController::class, 'getDataWhere']);
+Route::get('/getDataColumn', [QueryController::class, 'getDataColumn']);
+Route::get('/getDataMany', [QueryController::class, 'getDataManyWhere']);
 
 
+Route::get('/form', [QueryController::class, 'munculform']);
 
-
-
+Route::post('/validasi', [QueryController::class, 'validasiform']);
+          
 
 
 // Route::get('/posts', [PostController::class, 'index']);
