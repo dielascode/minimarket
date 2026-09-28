@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EloquentController;
+use App\Http\Controllers\EloquentPart2Controller;
 use App\Http\Controllers\LaporanPenjualan;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
@@ -161,6 +162,19 @@ Route::get('/eloquent/update', [EloquentController::class, 'updateData']);
 Route::get('/eloquent/updateSave', [EloquentController::class, 'updateSave']);
 Route::get('/eloquent/delete', [EloquentController::class, 'deleteData']);
 Route::get('/eloquent/destroy', [EloquentController::class, 'destroyData']);
+
+//acara 19
+Route::get('/eloquent2/where', [EloquentPart2Controller::class, 'whereData']);
+Route::get('/eloquent2/orWhere', [EloquentPart2Controller::class, 'orWhereData']);
+Route::get('/eloquent2/whereBetween', [EloquentPart2Controller::class, 'whereBetweenData']);
+Route::get('/eloquent2/whereIn', [EloquentPart2Controller::class, 'whereInData']);
+Route::get('/eloquent2/whereNotNull', [EloquentPart2Controller::class, 'whereNotNullData']);
+Route::get('/eloquent2/when', [EloquentPart2Controller::class, 'whenData']);
+Route::get('/eloquent2/accessor', [EloquentPart2Controller::class, 'accessorData']);
+Route::get('/eloquent2/soft-delete', [EloquentPart2Controller::class, 'softDeleteData']);
+Route::get('/eloquent2/with-trashed', [EloquentPart2Controller::class, 'withTrashedData']);
+Route::get('/eloquent2/only-trashed', [EloquentPart2Controller::class, 'onlyTrashedData']);
+Route::get('/eloquent2/restore', [EloquentPart2Controller::class, 'restoreData']);
 
 Route::get('/form', [QueryController::class, 'munculform']);
 
