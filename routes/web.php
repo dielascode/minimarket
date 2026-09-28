@@ -120,16 +120,39 @@ Route::get('/detail_penjualan/{id}', [LaporanPenjualan::class, 'show']);
 
 
 
+
+Route::get('/insertData', [QueryController::class, 'insertData']);
+Route::get('/insertGetId', [QueryController::class, 'insertGetId']);
 Route::get('/getData', [QueryController::class, 'getData']);
 Route::get('/getDataWhere', [QueryController::class, 'getDataWhere']);
 Route::get('/getDataColumn', [QueryController::class, 'getDataColumn']);
 Route::get('/getDataMany', [QueryController::class, 'getDataManyWhere']);
+Route::get('/getDataOperator', [QueryController::class, 'getDataOperator']);
+Route::get('/increment', [QueryController::class, 'increment']);
+Route::get('/decrement', [QueryController::class, 'decrement']);
+Route::get('/destroyData', [QueryController::class, 'destroyData']);
+Route::get('/truncate', [QueryController::class, 'truncate']);
+Route::get('/pluckData', [QueryController::class, 'pluckData']);
+Route::get('/pluckDataKeyValue', [QueryController::class, 'pluckDataKeyValue']);
+Route::get('/countData', [QueryController::class, 'countData']);
+Route::get('/sumData', [QueryController::class, 'sumData']);
+Route::get('/avgData', [QueryController::class, 'avgData']);
+Route::get('/maxData', [QueryController::class, 'maxData']);
+Route::get('/minData', [QueryController::class, 'minData']);
+Route::get('/leftJoinData', [QueryController::class, 'leftJoinData']);
+Route::get('/joinData', [QueryController::class, 'joinData']);
+Route::get('/orderData', [QueryController::class, 'orderData']);
+Route::get('/limitData', [QueryController::class, 'limitData']);
+Route::get('/offsetData', [QueryController::class, 'offsetData']);
+Route::get('/subQueryData', [QueryController::class, 'subQueryData']);
+Route::get('/rawSelectData', [QueryController::class, 'rawSelectData']);
+Route::get('/rawWhereData', [QueryController::class, 'rawWhereData']);
 
 
 Route::get('/form', [QueryController::class, 'munculform']);
 
 Route::post('/validasi', [QueryController::class, 'validasiform']);
-          
+
 
 
 // Route::get('/posts', [PostController::class, 'index']);
