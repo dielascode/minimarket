@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\EloquentController;
 use App\Http\Controllers\LaporanPenjualan;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
@@ -120,7 +121,7 @@ Route::get('/detail_penjualan/{id}', [LaporanPenjualan::class, 'show']);
 
 
 
-
+//acara 17
 Route::get('/insertData', [QueryController::class, 'insertData']);
 Route::get('/insertGetId', [QueryController::class, 'insertGetId']);
 Route::get('/getData', [QueryController::class, 'getData']);
@@ -148,6 +149,18 @@ Route::get('/subQueryData', [QueryController::class, 'subQueryData']);
 Route::get('/rawSelectData', [QueryController::class, 'rawSelectData']);
 Route::get('/rawWhereData', [QueryController::class, 'rawWhereData']);
 
+
+//acara 18
+Route::get('/eloquent/create', [EloquentController::class, 'createData']);
+Route::get('/eloquent/save', [EloquentController::class, 'saveData']);
+Route::get('/eloquent/getData', [EloquentController::class, 'getData']);
+Route::get('/eloquent/find', [EloquentController::class, 'getDataById']);
+Route::get('/eloquent/where', [EloquentController::class, 'getDataWhere']);
+Route::get('/eloquent/firstOrFail', [EloquentController::class, 'firstOrFail']);
+Route::get('/eloquent/update', [EloquentController::class, 'updateData']);
+Route::get('/eloquent/updateSave', [EloquentController::class, 'updateSave']);
+Route::get('/eloquent/delete', [EloquentController::class, 'deleteData']);
+Route::get('/eloquent/destroy', [EloquentController::class, 'destroyData']);
 
 Route::get('/form', [QueryController::class, 'munculform']);
 
