@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EloquentController;
 use App\Http\Controllers\EloquentPart2Controller;
+use App\Http\Controllers\FormController;
 use App\Http\Controllers\LaporanPenjualan;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
@@ -176,9 +177,14 @@ Route::get('/eloquent2/with-trashed', [EloquentPart2Controller::class, 'withTras
 Route::get('/eloquent2/only-trashed', [EloquentPart2Controller::class, 'onlyTrashedData']);
 Route::get('/eloquent2/restore', [EloquentPart2Controller::class, 'restoreData']);
 
-Route::get('/form', [QueryController::class, 'munculform']);
 
-Route::post('/validasi', [QueryController::class, 'validasiform']);
+
+Route::get('/form', [FormController::class, 'showForm']);
+Route::post('/submit', [FormController::class, 'submitForm']);
+
+
+Route::get('/formv', [FormController::class, 'showFormV']);
+Route::post('/validasi', [FormController::class, 'validasiform']);
 
 
 
