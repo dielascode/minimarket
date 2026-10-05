@@ -11,27 +11,28 @@ class AuthController extends Controller
 {
     public function login(Request $request)
     {
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
+        $credentials = $request->only('email', 'password');
+        $user = Auth::user();
 
-        $user = User::where('email', $request->email)->first();
-
-        if (!$user) {
-            return back()->with('error', 'Email tidak ditemukan.');
+        if (Auth::attempt($credentials)) {
+            return redirect()->route('admin');
         }
 
-        if ($request->password !== $user->password) {
-            return back()->with('error', 'Password salah.');
-        }
+        return back()->withErrors(['email' => 'Email atau password salah.']);
+    }
 
-        Auth::login($user);
-
-        if ($user->role === 'admin') {
-            return redirect()->route('admin.dashboard');
-        }
-
-        return redirect()->route('umum.dashboard');
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        return redirect()->route('login');
     }
 }
+
+            // Auth::login($user);
+
+            // if ($user->role === 'admin') {
+            //     return redirect()->route('admin.dashboard');
+            // }
+
+            // return redirect()->route('umum.dashboard');

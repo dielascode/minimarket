@@ -1,64 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
+<x-guest-layout>
+    <!-- Session Status -->
+    <x-auth-session-status class="mb-4" :status="session('status')" />
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
-</head>
-<style>
-    *{
-        font-family: 'Poppins', serif;
-    }
-    .container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-    }
+    <form method="POST" action="{{ route('login') }}">
+        @csrf
 
-    .card {
-        width: 500px;
-    }
-    .card-header{
-        background-color: #0d6efd;
-        color: white;
-        text-align: center;
-    }
-    .card-header h5{
-        margin: 0;
-    }
-</style>
-
-<body>
-    <div class="container">
-        <div class="card">
-            <div class="card-header">
-                <h5>Halaman Login</h5>
-            </div>
-            <div class="card-body">
-                <form action="/loginproses" method="post">
-                    <div class="mb-3">
-                        <label for="email" class="form-label">email</label>
-                        <input type="text" name="email" id="email" class="form-control">
-                    </div>
-                    <div class="mb-3" class="form-label">
-                        <label for="">Password</label>
-                        <input type="text" name="password" id="password" class="form-control">
-                    </div>
-                    <button type="submit" class="btn btn-primary mt-3">Login</button>
-                </form>
-            </div>
+        <!-- Email Address -->
+        <div>
+            <x-input-label for="email" :value="__('Email')" />
+            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+            <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
-    </div>
-</body>
 
-</html>
+        <!-- Password -->
+        <div class="mt-4">
+            <x-input-label for="password" :value="__('Password')" />
+
+            <x-text-input id="password" class="block mt-1 w-full"
+                            type="password"
+                            name="password"
+                            required autocomplete="current-password" />
+
+            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+        </div>
+
+        <!-- Remember Me -->
+        <div class="block mt-4">
+            <label for="remember_me" class="inline-flex items-center">
+                <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
+                <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+            </label>
+        </div>
+
+        <div class="flex items-center justify-end mt-4">
+            @if (Route::has('password.request'))
+                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
+                    {{ __('Forgot your password?') }}
+                </a>
+            @endif
+
+            <x-primary-button class="ms-3">
+                {{ __('Log in') }}
+            </x-primary-button>
+        </div>
+    </form>
+</x-guest-layout>

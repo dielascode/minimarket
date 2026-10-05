@@ -10,12 +10,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Auth\MustVerifyEmail as MustVerifyEmailTrait;
+
 #[Fillable(['name', 'email', 'password', 'role', 'age', 'points', 'status', 'deleted_at', 'first_name', 'last_name'])]
 #[Hidden(['password', 'remember_token'])]
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
-    /** @use HasFactory<UserFactory> */
-    use HasFactory, Notifiable, SoftDeletes;
+    use HasApiTokens;
+    use HasFactory, Notifiable, SoftDeletes, MustVerifyEmailTrait;
 
     /**
      * Get the attributes that should be cast.
@@ -41,10 +45,7 @@ class User extends Authenticatable
     {
         return $this->hasOne(Profile::class);
     }
-    public function setPasswordAttribute($value)
-    {
-        $this->attributes['password'] = bcrypt($value);
-    }
+    
     public function getFullNameAttribute()
     {
         return $this->first_name . ' ' . $this->last_name;
